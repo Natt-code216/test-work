@@ -1,0 +1,519 @@
+/* App.css - 火星主题组件样式 */
+
+/* ==================== 首页样式 ==================== */
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 48px 80px;
+  text-align: center;
+  animation: fade-up 0.8s 0.2s forwards;
+}
+
+.home-page h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.home-page p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.enter-chat-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-chat-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+}
+
+.enter-chat-link:hover {
+  background: var(--red-bright);
+  box-shadow: 0 0 30px rgba(193, 68, 14, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ==================== 对话页面样式 ==================== */
+.chat-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* 导航栏 */
+.chat-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  background: rgba(8, 7, 5, 0.7);
+}
+
+.back-link {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  background: transparent;
+}
+
+.back-link:hover {
+  color: var(--sand);
+  border-color: var(--border-hot);
+}
+
+.nav-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red-bright);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* 主容器 */
+.chat-container {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* 左侧面板 */
+.chat-sidebar {
+  padding: 40px 48px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: rgba(10, 9, 6, 0.3);
+}
+
+.chat-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+}
+
+.panel-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  margin-bottom: 24px;
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.panel-title span {
+  color: var(--red-bright);
+  display: block;
+}
+
+.panel-desc {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 380px;
+}
+
+/* 遥测显示 */
+.telemetry {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tele-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tele-key {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.tele-val {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--sand);
+}
+
+.tele-val.live {
+  color: var(--red-bright);
+  animation: flicker 3s ease-in-out infinite;
+}
+
+/* 右侧主面板 */
+.chat-main {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 消息容器 */
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  min-height: 400px;
+  max-height: calc(100vh - 300px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 40px 20px;
+}
+
+/* 消息气泡 */
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: msg-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.msg-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.message.user .msg-label {
+  color: var(--sand-muted);
+  text-align: right;
+}
+
+.message.ai .msg-label {
+  color: var(--red-bright);
+}
+
+.msg-bubble {
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 88%;
+  position: relative;
+  color: var(--text);
+}
+
+.message.user .msg-bubble {
+  align-self: flex-end;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.message.ai .msg-bubble {
+  align-self: flex-start;
+  background: rgba(193, 68, 14, 0.08);
+  border: 1px solid var(--border-hot);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+/* 打字动画 */
+.msg-bubble.typing {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 120px;
+  padding: 14px 18px;
+}
+
+.typing-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--red-bright);
+  letter-spacing: 0.05em;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red-bright);
+  animation: bounce-dot 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* 错误信息 */
+.error-message {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--error-text);
+  letter-spacing: 0.05em;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+/* 输入区域 */
+.input-area {
+  margin-top: 28px;
+  position: relative;
+}
+
+.input-wrap {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  clip-path: polygon(0 0, calc(100% - 60px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--border-hot);
+  box-shadow: 0 0 24px rgba(193, 68, 14, 0.15);
+}
+
+.input-wrap textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 18px 80px 18px 20px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+  min-height: 80px;
+  max-height: 200px;
+}
+
+.input-wrap textarea::placeholder {
+  color: var(--text-dim);
+}
+
+.input-wrap textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 发送按钮 */
+.send-button {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  background: var(--red);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.send-button:hover:not(:disabled) {
+  background: var(--red-bright);
+  box-shadow: 0 0 20px rgba(193, 68, 14, 0.5);
+  transform: translateY(-1px);
+}
+
+.send-button:disabled {
+  background: var(--surface-2);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 输入元信息 */
+.input-meta {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-hint {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.char-count {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-dim);
+}
+
+/* 底部配置栏 */
+.config-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 48px;
+  background: rgba(8, 7, 5, 0.85);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 50;
+}
+
+.config-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.config-input {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  color: var(--sand);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.config-input:focus {
+  border-color: var(--border-hot);
+}
+
+.config-input::placeholder {
+  color: var(--text-dim);
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 900px) {
+  .chat-container {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-sidebar {
+    padding: 40px 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chat-main {
+    padding: 40px 24px 100px;
+  }
+
+  .chat-nav {
+    padding: 20px 24px;
+  }
+
+  .config-bar {
+    padding: 12px 24px;
+  }
+
+  .messages-container {
+    max-height: calc(100vh - 350px);
+  }
+}

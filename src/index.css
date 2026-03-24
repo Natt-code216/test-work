@@ -1,0 +1,206 @@
+/* 火星主题全局样式 */
+
+:root {
+  /* 颜色变量 */
+  --red:        #c1440e;
+  --red-bright: #e85d1a;
+  --red-glow:   #ff6b35;
+  --sand:       #d4a96a;
+  --sand-muted: #8a6a42;
+  --dark:       #080705;
+  --dark-2:     #100e0a;
+  --dark-3:     #1a1710;
+  --surface:    #1e1b13;
+  --surface-2:  #27231a;
+  --border:     rgba(212, 169, 106, 0.12);
+  --border-hot: rgba(193, 68, 14, 0.4);
+  --text:       #e8dcc8;
+  --text-muted: #7a6e5e;
+  --text-dim:   #4a4438;
+  --error-bg:   rgba(193, 68, 14, 0.15);
+  --error-border: #c1440e;
+  --error-text: #ff6b35;
+
+  /* 字体 */
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-heading: 'Syne', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* 噪点背景 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.6;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* 扫描线效果 */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* 角落装饰 */
+.corner-tl, .corner-br {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.corner-tl {
+  top: 16px;
+  left: 16px;
+}
+
+.corner-br {
+  bottom: 16px;
+  right: 16px;
+}
+
+.corner-tl::before, .corner-tl::after,
+.corner-br::before, .corner-br::after {
+  content: '';
+  position: absolute;
+  background: var(--red-bright);
+}
+
+.corner-tl::before {
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 1px;
+}
+
+.corner-tl::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 20px;
+}
+
+.corner-br::before {
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 1px;
+}
+
+.corner-br::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 20px;
+}
+
+/* 动画 */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(232, 93, 26, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(232, 93, 26, 0);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  94% { opacity: 0.4; }
+  96% { opacity: 1; }
+}
+
+@keyframes bounce-dot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+@keyframes msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hot);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red-bright);
+}
