@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/chat",
+      "destination": "http://123.56.167.41:8000/api/chat"
+    }
+  ]
+}
